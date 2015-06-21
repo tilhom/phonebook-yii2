@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+echo "      chmod 0777 runtime\n";
+	@chmod("runtime", 0777);
+echo "      chmod 0777 web/assets\n";
+	@chmod("web/assets", 0777);
+echo "      chmod 0755 yii\n";
+	@chmod("yii", 0755);
+echo "   generate cookie validation key in config/web.php\n";
+        $file = 'config/web.php';
+        $length = 32;
+        $bytes = mcrypt_create_iv($length, MCRYPT_DEV_URANDOM);
+        $key = strtr(substr(base64_encode($bytes), 0, $length), '+/=', '_-.');
+        $content = preg_replace('/(("|\')cookieValidationKey("|\')\s*=>\s*)(""|\'\')/', "\\1'$key'", file_get_contents($file));
+        file_put_contents($file, $content);

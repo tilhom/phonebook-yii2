@@ -32,18 +32,39 @@ AppAsset::register($this);
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
+            $menuItems = [
+                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'About', 'url' => ['/site/about']],
+                ['label' => 'Contact', 'url' => ['/site/contact']],
+            ];
+            if (Yii::$app->user->isGuest) {
+                $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+            } else {
+                $menuItems[] = [
+                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'url' => ['/site/logout'],
+                    'linkOptions' => ['data-method' => 'post']
+                ];
+            }
+            if (Yii::$app->user->can('permission_admin'))
+              $menuItems[]=[
+                'label' => '<span class="glyphicon glyphicon-cog"></span> Managment ', 
+                'items'=>
+                        [
+                            ['label'=>'Permissions','url'=>['/admin/permission']],
+                            ['label'=>'Roles','url'=>['/admin/role']],
+                            ['label'=>'Assignments','url'=>['/admin/assignment']],
+                            '<li class="divider"></li>',
+                            ['label'=>'Users','url'=>['/user']],
+
+                        ]
+                ];
+
             echo Nav::widget([
+                'encodeLabels'=>false,
                 'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => [
-                    ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'About', 'url' => ['/site/about']],
-                    ['label' => 'Contact', 'url' => ['/site/contact']],
-                    Yii::$app->user->isGuest ?
-                        ['label' => 'Login', 'url' => ['/site/login']] :
-                        ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                            'url' => ['/site/logout'],
-                            'linkOptions' => ['data-method' => 'post']],
-                ],
+                'items' => $menuItems,
             ]);
             NavBar::end();
         ?>
