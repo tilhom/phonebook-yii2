@@ -11,8 +11,8 @@ class m150619_113104_init_subscriber extends Migration
             'subscriber',
             [
                 'id' => 'pk',
-                'user_id' => 'int',
-                'name' => 'string',
+                'user_id' => 'int NOT NULL',
+                'name' => 'string NOT NULL',
                 'birth_date' => 'date',
                 'notes' => 'text',
             ],

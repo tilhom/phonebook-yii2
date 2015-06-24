@@ -8,16 +8,26 @@ $config = [
     'name'=>'Phonebook',
     'bootstrap' => ['log'],
     'modules' => [
+          'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+            // enter optional module parameters below - only if you need to  
+            // use your own export download action or custom translation 
+            // message source
+            // 'downloadAction' => 'gridview/export/download',
+            // 'i18n' => []
+        ],
         'admin' => [
             'class' => 'mdm\admin\Module',
+            /*'controllerMap' => [
+                 'assignment' => [
+                    'class' => 'mdm\admin\controllers\AssignmentController',
+                    'userClassName' => 'app\models\User',
+                    'idField' => 'id', // id field of model User
+                    ]
+                ],*/
             ],
-        /*'assignment' => [
-            'class' => 'mdm\admin\controllers\AssignmentController',
-            'userClassName' => 'app\models\User',
-            'idField' => 'id', // id field of model User
-                ]*/
         ],
-        'components' => [
+    'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Dqt8LvSibg9qAQX0T-kS_ReqMTt7uyZS',
@@ -55,14 +65,15 @@ $config = [
         'authManager' => [
             'class' => 'yii\rbac\DbManager'
         ],
-        'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
-        'allowActions' => [
-            //'site/*', // add or remove allowed actions to this list
-        ]
-    ],
         'db' => require(__DIR__ . '/db.php'),
     ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'site/*', 
+        ]
+    ],
+
     'params' => $params,
 ];
 

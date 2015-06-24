@@ -13,6 +13,11 @@ return [
     'modules' => [
         'gii' => 'yii\gii\Module',
     ],
+    'controllerMap' => [
+        'fixture' => [
+            'class' => 'yii\console\controllers\FixtureController',
+        ],
+    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',

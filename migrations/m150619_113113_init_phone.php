@@ -11,8 +11,8 @@ class m150619_113113_init_phone extends Migration
         'phone',
         [
             'id' => 'pk',
-            'subscriber_id' => 'int',
-            'number' => 'string',
+            'subscriber_id' => 'int NOT NULL',
+            'number' => 'string NOT NULL',
         ],
         'ENGINE=InnoDB'
         );

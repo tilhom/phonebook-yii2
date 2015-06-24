@@ -33,3 +33,4 @@ taskpaper
      - subscriber
      - phone
 
+ALTER TABLE  `user` DROP  `role` ;

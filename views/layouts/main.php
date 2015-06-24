@@ -54,6 +54,7 @@ AppAsset::register($this);
                         [
                             ['label'=>'Permissions','url'=>['/admin/permission']],
                             ['label'=>'Roles','url'=>['/admin/role']],
+                            ['label'=>'Rotes','url'=>['/admin/route']],
                             ['label'=>'Assignments','url'=>['/admin/assignment']],
                             '<li class="divider"></li>',
                             ['label'=>'Users','url'=>['/user']],
