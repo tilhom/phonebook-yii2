@@ -66,7 +66,10 @@ class SubscriberController extends Controller
         $model = new Subscriber();
         $modelsPhone = [new Phone];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->user_id=Yii::$app->user->getId();
+            if($model->save()):
+
              $modelsPhone = Model::createMultiple(Phone::classname());
             
             Model::loadMultiple($modelsPhone, Yii::$app->request->post());
@@ -95,6 +98,7 @@ class SubscriberController extends Controller
                     $transaction->rollBack();
                 }
             }
+            endif;
      
         } else {
             return $this->render('create', [

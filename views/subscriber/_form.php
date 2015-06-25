@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use wbraganca\dynamicform\DynamicFormWidget;
+use yii\jui\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Subscriber */
@@ -16,6 +17,14 @@ use wbraganca\dynamicform\DynamicFormWidget;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'birth_date')->textInput() ?>
+
+   <!-- <?php   echo DatePicker::widget([
+        'model' => $model,
+        'attribute' => 'birth_date',
+        //'language' => 'ru',
+        'dateFormat' => 'yyyy-MM-dd',
+    ]);
+    ?> -->
 
     <?= $form->field($model, 'notes')->textarea(['rows' => 6]) ?>
 

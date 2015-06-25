@@ -15,11 +15,14 @@ class SubscriberSearch extends Subscriber
     /**
      * @inheritdoc
      */
+    
+    public $globalSearch;
+
     public function rules()
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['name', 'birth_date', 'notes'], 'safe'],
+            [['name', 'globalSearch','birth_date', 'notes'], 'safe'],
         ];
     }
 
@@ -43,10 +46,15 @@ class SubscriberSearch extends Subscriber
     {
         $query = Subscriber::find();
 
+        $query->leftJoin('phone', 'phone.subscriber_id = subscriber.id');
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+/*echo "<pre>";
+print_r($query);
+print_r($dataProvider);
+die;*/
         $this->load($params);
 
         if (!$this->validate()) {
@@ -55,15 +63,23 @@ class SubscriberSearch extends Subscriber
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id,
-            'birth_date' => $this->birth_date,
+        $query->orFilterWhere([
+            'user_id' => Yii::$app->user->getId(),
+            'birth_date' => $this->globalSearch,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'notes', $this->notes]);
+        $query->orFilterWhere([
+            "phone.number" => $this->globalSearch,
+        ]);
+
+        $query->orFilterWhere(['like', 'name', $this->globalSearch])
+            ->orFilterWhere(['like', 'notes', $this->globalSearch]);
 
         return $dataProvider;
+    }
+
+     public function getPhones()
+    {
+        return $this->hasMany(Phone::className(), ['subscriber_id' => 'id']);
     }
 }
