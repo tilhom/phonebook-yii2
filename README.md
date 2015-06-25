@@ -26,10 +26,6 @@ php composer.phar create-project --prefer-dist --stability=dev tilhom/phonebook-
 
 <<<<<<< HEAD
 Now you should be able to access the application through the following URL, assuming `phonebook` is the directory
-=======
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
->>>>>>> a06a61fd56957a60f02f7d2b77ec0e6ba5f61117
-directly under the Web root.
 
 ~~~
 http://localhost/phonebook/web/
