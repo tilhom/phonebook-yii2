@@ -32,8 +32,8 @@ class Subscriber extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['user_id', 'name'], 'required'], 
             [['user_id'], 'integer'],
-            [['name'], 'required'],
             [['birth_date'], 'safe'],
             [['notes'], 'string'],
             [['name'], 'string', 'max' => 255]

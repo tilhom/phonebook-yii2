@@ -7,16 +7,27 @@ $this->title = 'My Yii Application';
     <div class="jumbotron">
         <h1>Congratulations!</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p class="lead">You have successfully created your Yii-powered <mark>Phone&nbsp;Book</mark></p>
+        <p>
+        <?php if(Yii::$app->user->isGuest)  : ?>
+        <a class="btn btn-lg btn-success" href="/site/login"> Use your phone book</a>
+        <span class="spacer"></span>
+        <a class="btn btn-lg btn-primary" href="/site/signup">
+        Start a new phone book</a>
+        </p>
+        <?php endif; ?>
     </div>
 
     <div class="body-content">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Management</h2>
+        </div>
+    </div>
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h3>Heading</h3>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -26,7 +37,7 @@ $this->title = 'My Yii Application';
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h3>Heading</h3>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -36,7 +47,7 @@ $this->title = 'My Yii Application';
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h3>Heading</h3>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip

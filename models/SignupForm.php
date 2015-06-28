@@ -47,11 +47,20 @@ class SignupForm extends Model
             $user->email = $this->email;
             $user->setPassword($this->password);
             $user->generateAuthKey();
-            if ($user->save()) {
+            if ($user->save()&&$this->setRole($user->id)) {
                 return $user;
             }
         }
 
         return null;
+    }
+
+    private function setRole($id)
+    {
+        $created_at=time();
+        return Yii::$app->db->createCommand("INSERT INTO `auth_assignment` 
+            (`item_name`, `user_id`, `created_at`) 
+            VALUES
+            ('user', '$id', '$created_at');")->execute();
     }
 }
