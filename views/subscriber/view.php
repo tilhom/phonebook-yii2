@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Subscriber */
@@ -10,6 +11,7 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Subscribers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="subscriber-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -28,12 +30,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'user_id',
             'name',
             'birth_date',
             'notes:ntext',
         ],
     ]) ?>
+
+<h3>Phone list </h3>   
+<?php 
+    echo GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            'number',
+        ],
+    ]) 
+;
+    ?>
 
 </div>

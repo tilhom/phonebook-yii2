@@ -11,6 +11,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
 
 /**
  * SubscriberController implements the CRUD actions for Subscriber model.
@@ -50,9 +51,15 @@ class SubscriberController extends Controller
      * @return mixed
      */
     public function actionView($id)
-    {
+    {   $dataProviderPhones = new ActiveDataProvider([
+            'query' => $this->findModelPhones($id),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'dataProvider' => $dataProviderPhones
         ]);
     }
 
@@ -185,6 +192,15 @@ class SubscriberController extends Controller
     protected function findModel($id)
     {
         if (($model = Subscriber::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function findModelPhones($id)
+    {
+        if (($model = Phone::find()->where(['subscriber_id'=>$id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
