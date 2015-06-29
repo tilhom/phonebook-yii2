@@ -15,7 +15,8 @@ return [
     ],
     'controllerMap' => [
         'fixture' => [
-            'class' => 'yii\console\controllers\FixtureController',
+            'class' => 'yii\faker\FixtureController',
+            'templatePath' => '@tests/unit/fixtures',
         ],
     ],
     'components' => [

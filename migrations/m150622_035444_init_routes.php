@@ -13,6 +13,7 @@ class m150622_035444_init_routes extends Migration
                 ('/site/*', 2, NULL, NULL, NULL, 1434863973, 1434863973),
                 ('/user/*', 2, NULL, NULL, NULL, 1434864010, 1434864010),
                 ('/subscriber/*', 2, NULL, NULL, NULL, 1434949197, 1434949197),
+                ('/debug/*', 2, NULL, NULL, NULL, 1435468759, 1435468759),
                 ('/gii/*', 2, NULL, NULL, NULL, 1434864010, 1434864010);"
             );
         $this->execute(
@@ -23,6 +24,7 @@ class m150622_035444_init_routes extends Migration
                 ('permission_user', '/site/*'),
                 ('permission_admin', '/subscriber/*'),
                 ('permission_user', '/subscriber/*'),
+                ('permission_admin', '/debug/*'),
                 ('permission_admin', '/user/*');"
             );
     }
@@ -35,15 +37,17 @@ class m150622_035444_init_routes extends Migration
                 `child`='/site/*' OR
                 `child`='/user/*' OR
                 `child`='/gii/*' OR
-                `child`='/subscriber/*';"
+                `child`='/subscriber/*' OR
+                `child`='/debug/*';"
             );
         $this->execute(
         "DELETE FROM `auth_item` 
             WHERE `name`='/admin/*' OR 
                 `name`='/site/*' OR
                 `name`='/user/*' OR
-                `name`='/gii/*'
-                `name`='/subscriber/*';"
+                `name`='/gii/*' OR
+                `name`='/subscriber/*' OR
+                `name`='/debug/*';"
             );
 
         

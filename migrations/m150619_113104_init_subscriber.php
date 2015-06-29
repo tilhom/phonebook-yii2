@@ -19,7 +19,7 @@ class m150619_113104_init_subscriber extends Migration
             'ENGINE=InnoDB'
         );
          $this->addForeignKey('user_subscriber_list', 'subscriber',
-        'user_id', 'user', 'id');
+        'user_id', 'user', 'id','CASCADE','CASCADE');
     }
 
     public function safeDown()

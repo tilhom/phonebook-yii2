@@ -18,7 +18,7 @@ class m150619_113113_init_phone extends Migration
         );
 
         $this->addForeignKey('subscriber_phone_numbers', 'phone',
-        'subscriber_id', 'subscriber', 'id');
+        'subscriber_id', 'subscriber', 'id','CASCADE','CASCADE');
     }
 
     public function safeDown()

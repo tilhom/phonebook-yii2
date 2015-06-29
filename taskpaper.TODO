@@ -37,3 +37,28 @@ taskpaper
      - user
      - subscriber
      - phone
+
+
+WEB-приложение "Телефонная книга":
+        The application is able to perform a global search (in part of the name, telephone)
+        CRUD. 
+        The user interface has two roles (user and aministrator). 
+        YII, БД. 
+        migrations,
+        tests,
+        RBAC,  
+        Gii,  
+        ActiveRecord,
+        Dynamic Forms,
+        Complex Forms,
+        Karthik Gridview Expand Row,
+        DatePicker widget.
+
+        administrator role account
+              Login: admin
+              Password: admin121345
+
+        user role account
+
+              Login: user1
+              Password: 123456
